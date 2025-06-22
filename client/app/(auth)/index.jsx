@@ -13,6 +13,7 @@ import styles from "../../styles/login.styles";
 import { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import COLORS from "../../constants/colors";
+import { useAuthStore } from "../../store/authStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
