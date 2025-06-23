@@ -19,9 +19,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {};
+  const {login, isLoading } = useAuthStore();
+
+  const handleLogin = async () => {
+    const result = await login(email, password);
+
+    if (!result.success) {
+      console.error("Login error:", result.error);
+      Alert.alert("Error", result.error || "An error occurred during login.");
+    }
+  };
 
   return (
     <KeyboardAvoidingView

@@ -26,10 +26,14 @@ const Signup = () => {
   const {user, register, isLoading} = useAuthStore()
 
   const handleSignup = async () => {
-    const result = register(username, email, password);
+    const result = await register(username, email, password);
     if (result.success) {
       router.push("/(auth)/login");
-    } else {
+    }
+    
+    // Handle errors if any
+    if (result.error) {
+      console.error("Signup error:", result.error);
       Alert.alert("Error", result.error || "An error occurred during signup.");
     }
   };
