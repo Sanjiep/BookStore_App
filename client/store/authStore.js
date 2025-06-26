@@ -1,6 +1,9 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const API_URL = 'https://bookstore-app-mn5b.onrender.com/api/auth';
+const LOCAL_API_URL = 'http://localhost:3000/api/auth';
+
 export const useAuthStore = create((set, get) => ({
     user: null,
     token: null,
@@ -9,7 +12,7 @@ export const useAuthStore = create((set, get) => ({
     register: async (username, email, password) => {
         set({ isLoading: true });
         try {
-            const response = await fetch('https://bookstore-app-mn5b.onrender.com/api/auth/register', {
+            const response = await fetch(`${LOCAL_API_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,7 +45,7 @@ export const useAuthStore = create((set, get) => ({
     login: async (email, password) => {
         set({ isLoading: true });
         try {
-            const response = await fetch('https://bookstore-app-mn5b.onrender.com/api/auth/login', {
+            const response = await fetch(`${LOCAL_API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
